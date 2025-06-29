@@ -34,9 +34,9 @@ Initial authentication likely used stolen or abused service account credentials.
 
 "This could either be a modified svchost file or an essential file the attacker would have pre-analyzed and calculated to know it is necessary for this adversarial attack."
 
-## ⚡ Incident Response Breakdown
+## Incident Response Breakdown
 
-# Stage of Kill Chain:
+### Stage of Kill Chain:
 
 Lateral Movement — the attacker moved from 10.10.1.44 to 10.10.1.55 using valid credentials, C2, and file copy via SMB.
 
@@ -50,9 +50,9 @@ Use of ADMIN$ share to copy suspicious file
 
 New process start on second host without authorization
 
-## 🚀 Response Recommendations
+##  Response Recommendations
 
-# ✅ Immediate Actions:
+##  Immediate Actions:
 
 Isolate both 10.10.1.44 and 10.10.1.55 from the network
 
@@ -62,7 +62,7 @@ Block outbound traffic to 192.0.2.200
 
 Reimage infected endpoints
 
-## ⚖️ Detection Engineering:
+## Detection Engineering:
 
 Write SIEM rules to detect:
 
@@ -80,14 +80,14 @@ index=network_logs sourcetype="tls"
 | where ssl_issuer_common_name="AnonRootCA" OR ssl_issuer="Unknown"
 | stats count by src_ip, dest_ip, ssl_subject, ssl_issuer
 
-📌 Detects connections where the TLS cert issuer is self-signed or not from a known CA.
+ Detects connections where the TLS cert issuer is self-signed or not from a known CA.
 
 ### SIEM Detection Rule 2 – Beaconing Behavior (HTTP POST to C2)
 
 index=proxy_logs method=POST uri="/c2channel/api/connect"
 | stats count by src_ip, dest_ip, uri, user_agent
 
-📌 Flags potential C2 beacon activity via specific POST requests to unusual URIs.
+ Flags potential C2 beacon activity via specific POST requests to unusual URIs.
 
 ### SIEM Detection Rule 3 – File Transfer via ADMIN$ Share
 
@@ -95,16 +95,16 @@ index=windows_logs EventCode=5145
 | where Share_Name="\\*\ADMIN$" AND Relative_Target_Name="scvhost.exe"
 | stats count by Subject_Account_Name, Source_Network_Address, Share_Name
 
-📌 Detects when scvhost.exe is copied over SMB to an ADMIN$ share.
+ Detects when scvhost.exe is copied over SMB to an ADMIN$ share.
 
 ### SIEM Detection Rule 4 – Suspicious Process Execution on Target Host
 
 index=process_logs process_name="scvhost.exe"
 | stats count by host, user, parent_process, command_line
 
-📌 Flags execution of a suspicious binary that mimics legitimate Windows processes.
+ Flags execution of a suspicious binary that mimics legitimate Windows processes.
 
-## 🛡️ Preventive Measures:
+## Preventive Measures:
 
 Implement EDR that can flag suspicious SMB and process behavior
 
@@ -112,7 +112,7 @@ Harden service account usage with Least Privilege + MFA
 
 Enable command-line logging (Sysmon + Audit Policy)
 
-## 🎓 What This Project Demonstrates
+## What This Project Demonstrates
 
 My ability to perform layered log analysis across DNS, HTTP, SMB, and process logs
 
