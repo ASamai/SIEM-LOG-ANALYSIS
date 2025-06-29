@@ -7,10 +7,15 @@ This project showcases my ability to perform advanced SIEM log analysis, identif
 This analysis demonstrates my threat detection mindset, SOC Tier 2+ capabilities, and ability to think beyond alerts to understand attacker intent and how a real adversary might pivot within the network.
 
 Splunk Log Extract:
+
 time="2025-06-28T09:42:17Z" src_ip="10.10.1.44" dst_ip="8.8.8.8" protocol="DNS" port=53 msg="DNS Query for update.login.microsoft.com"
+
 time="2025-06-28T09:42:18Z" src_ip="10.10.1.44" dst_ip="192.0.2.200" protocol="TCP" port=443 msg="TLS handshake with certificate issuer: AnonRootCA"
+
 time="2025-06-28T09:42:23Z" src_ip="10.10.1.44" dst_ip="192.0.2.200" protocol="TCP" port=443 msg="HTTP POST to /c2channel/api/connect (beacon)"
+
 time="2025-06-28T09:42:24Z" src_ip="10.10.1.44" dst_ip="10.10.1.55" protocol="SMB" port=445 msg="File copied: scvhost.exe to \\\\10.10.1.55\\ADMIN$"
+
 time="2025-06-28T09:42:27Z" src_ip="10.10.1.55" dst_ip="127.0.0.1" protocol="Localhost" msg="Process started: scvhost.exe"
 
 MITRE ATT&CK Techniques Identified
