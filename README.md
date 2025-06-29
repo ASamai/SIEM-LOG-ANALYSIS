@@ -74,7 +74,7 @@ File copies to ADMIN$ share from non-admin users
 
 # SIEM RULES: 
 
-SIEM Detection Rule 1 – Suspicious TLS Certificate
+# SIEM Detection Rule 1 – Suspicious TLS Certificate
 
 index=network_logs sourcetype="tls"
 | where ssl_issuer_common_name="AnonRootCA" OR ssl_issuer="Unknown"
@@ -82,14 +82,14 @@ index=network_logs sourcetype="tls"
 
 📌 Detects connections where the TLS cert issuer is self-signed or not from a known CA.
 
-SIEM Detection Rule 2 – Beaconing Behavior (HTTP POST to C2)
+# SIEM Detection Rule 2 – Beaconing Behavior (HTTP POST to C2)
 
 index=proxy_logs method=POST uri="/c2channel/api/connect"
 | stats count by src_ip, dest_ip, uri, user_agent
 
 📌 Flags potential C2 beacon activity via specific POST requests to unusual URIs.
 
-SIEM Detection Rule 3 – File Transfer via ADMIN$ Share
+# SIEM Detection Rule 3 – File Transfer via ADMIN$ Share
 
 index=windows_logs EventCode=5145
 | where Share_Name="\\*\ADMIN$" AND Relative_Target_Name="scvhost.exe"
@@ -97,7 +97,7 @@ index=windows_logs EventCode=5145
 
 📌 Detects when scvhost.exe is copied over SMB to an ADMIN$ share.
 
-SIEM Detection Rule 4 – Suspicious Process Execution on Target Host
+# SIEM Detection Rule 4 – Suspicious Process Execution on Target Host
 
 index=process_logs process_name="scvhost.exe"
 | stats count by host, user, parent_process, command_line
