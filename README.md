@@ -2,7 +2,7 @@
 
 This project showcases my ability to perform advanced SIEM log analysis, identify attacker behavior based on MITRE ATT&CK techniques, and make real-time incident response recommendations. The scenario presented simulates a real-world Command-and-Control (C2) and Lateral Movement attack within a corporate network.
 
-"While the scenario did not explicitly state it was a multi-host attack, I expanded the response scope to include both IPs involved, taking into account the likely blast radius and the broader intent of an advanced adversary. This reflects a realistic mindset in threat detection and response."
+While the scenario did not explicitly state it was a multi-host attack, I expanded the response scope to include both IPs involved, taking into account the likely blast radius and the broader intent of an advanced adversary. This reflects a realistic mindset in threat detection and response.
 
 This analysis demonstrates my threat detection mindset, SOC Tier 2+ capabilities, and ability to think beyond alerts to understand attacker intent and how a real adversary might pivot within the network.
 
