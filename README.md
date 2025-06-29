@@ -54,23 +54,23 @@ New process start on second host without authorization
 
 ##  Immediate Actions:
 
-Isolate both 10.10.1.44 and 10.10.1.55 from the network
+1. Isolate both 10.10.1.44 and 10.10.1.55 from the network
 
-Disable compromised account used for lateral movement (likely svc-backup)
+2. Disable compromised account used for lateral movement (likely svc-backup)
 
-Block outbound traffic to 192.0.2.200
+3. Block outbound traffic to 192.0.2.200
 
-Reimage infected endpoints
+4. Reimage infected endpoints
 
 ## Detection Engineering:
 
-Write SIEM rules to detect:
+1. Write SIEM rules to detect:
 
-TLS connections with unknown/self-signed certs
+2. TLS connections with unknown/self-signed certs
 
-Beaconing behavior over uncommon subdomains
+3. Beaconing behavior over uncommon subdomains
 
-File copies to ADMIN$ share from non-admin users
+4. File copies to ADMIN$ share from non-admin users
 
 ## SIEM RULES: 
 
@@ -114,12 +114,12 @@ Enable command-line logging (Sysmon + Audit Policy)
 
 ## What This Project Demonstrates
 
-My ability to perform layered log analysis across DNS, HTTP, SMB, and process logs
++ My ability to perform layered log analysis across DNS, HTTP, SMB, and process logs.
 
-Mapping attacker behavior to MITRE ATT&CK
++ Mapping attacker behavior to MITRE ATT&CK.
 
-Realistic incident response playbook creation
++ Realistic incident response playbook creation.
 
-Purple team mindset: blending attacker perspective with defensive measures
++ Purple team mindset: blending attacker perspective with defensive measures
 
-"I think my points are valid because I didn't just respond to the alert — I investigated the attacker’s intent and preemptively shut down their ability to pivot. That’s real defense."
+I think my points are valid because I didn't just respond to the alert, I investigated the attacker’s intent and preemptively shut down their ability to pivot. 
