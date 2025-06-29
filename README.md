@@ -1,12 +1,12 @@
-# Advanced SIEM Log Analysis & Incident Response - Simulated C2 & Lateral Movement Attack
-SIEM log analysis of a simulated command-and-control + lateral movement attack
+### Advanced SIEM Log Analysis & Incident Response - Simulated C2 & Lateral Movement Attack
+
 This project showcases my ability to perform advanced SIEM log analysis, identify attacker behavior based on MITRE ATT&CK techniques, and make real-time incident response recommendations. The scenario presented simulates a real-world Command-and-Control (C2) and Lateral Movement attack within a corporate network.
 
 "While the scenario did not explicitly state it was a multi-host attack, I expanded the response scope to include both IPs involved, taking into account the likely blast radius and the broader intent of an advanced adversary. This reflects a realistic mindset in threat detection and response."
 
 This analysis demonstrates my threat detection mindset, SOC Tier 2+ capabilities, and ability to think beyond alerts to understand attacker intent and how a real adversary might pivot within the network.
 
-Splunk Log Extract:
+## Splunk Log Extract:
 
 time="2025-06-28T09:42:17Z" src_ip="10.10.1.44" dst_ip="8.8.8.8" protocol="DNS" port=53 msg="DNS Query for update.login.microsoft.com"
 
@@ -18,7 +18,7 @@ time="2025-06-28T09:42:24Z" src_ip="10.10.1.44" dst_ip="10.10.1.55" protocol="SM
 
 time="2025-06-28T09:42:27Z" src_ip="10.10.1.55" dst_ip="127.0.0.1" protocol="Localhost" msg="Process started: scvhost.exe"
 
-MITRE ATT&CK Techniques Identified
+## MITRE ATT&CK Techniques Identified
 
 T1071.001 – Application Layer Protocol (Web Protocols)
 
@@ -34,9 +34,9 @@ Initial authentication likely used stolen or abused service account credentials.
 
 "This could either be a modified svchost file or an essential file the attacker would have pre-analyzed and calculated to know it is necessary for this adversarial attack."
 
-⚡ Incident Response Breakdown
+## ⚡ Incident Response Breakdown
 
-Stage of Kill Chain:
+# Stage of Kill Chain:
 
 Lateral Movement — the attacker moved from 10.10.1.44 to 10.10.1.55 using valid credentials, C2, and file copy via SMB.
 
@@ -50,9 +50,9 @@ Use of ADMIN$ share to copy suspicious file
 
 New process start on second host without authorization
 
-🚀 Response Recommendations
+## 🚀 Response Recommendations
 
-✅ Immediate Actions:
+# ✅ Immediate Actions:
 
 Isolate both 10.10.1.44 and 10.10.1.55 from the network
 
@@ -62,7 +62,7 @@ Block outbound traffic to 192.0.2.200
 
 Reimage infected endpoints
 
-⚖️ Detection Engineering:
+## ⚖️ Detection Engineering:
 
 Write SIEM rules to detect:
 
@@ -72,7 +72,7 @@ Beaconing behavior over uncommon subdomains
 
 File copies to ADMIN$ share from non-admin users
 
-🛡️ Preventive Measures:
+## 🛡️ Preventive Measures:
 
 Implement EDR that can flag suspicious SMB and process behavior
 
@@ -80,7 +80,7 @@ Harden service account usage with Least Privilege + MFA
 
 Enable command-line logging (Sysmon + Audit Policy)
 
-🎓 What This Project Demonstrates
+## 🎓 What This Project Demonstrates
 
 My ability to perform layered log analysis across DNS, HTTP, SMB, and process logs
 
